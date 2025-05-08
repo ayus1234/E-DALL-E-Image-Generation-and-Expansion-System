@@ -1,0 +1,13 @@
+tensorflow
+keras_cv
+matplotlib
+pillow
+transformers
+einops
+jax
+flax
+dalle-mini @ git+https://github.com/borisdayma/dalle-mini.git
+vqgan-jax @ git+https://github.com/patil-suraj/vqgan-jax.git
+ftfy
+unidecode
+emoji 

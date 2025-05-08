@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-DALL-E: Image Generation with Varying Aspect Ratios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .image-comparison {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        .button {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>E-DALL-E: Image Generation with Varying Aspect Ratios</h1>
+    
+    <p>
+        This project combines text-to-image generation using DALL-E Mini with a novel expansion technique (E-DALL-E) 
+        to create images with different aspect ratios.
+    </p>
+
+    <h2>Overview</h2>
+    <p>
+        Modern AI image generation models like DALL-E Mini typically generate square (1:1) images. 
+        However, for many applications, different aspect ratios like 16:9 for landscapes or 9:16 for portraits are preferred.
+        E-DALL-E solves this problem by expanding the generated square images to any desired aspect ratio.
+    </p>
+
+    <h2>How It Works</h2>
+    <p>The process consists of two main steps:</p>
+    <ol>
+        <li><strong>Image Generation:</strong> Generate a square image using DALL-E Mini based on your text prompt.</li>
+        <li><strong>Image Expansion:</strong> Expand the image to your desired aspect ratio using:
+            <ul>
+                <li>First, an initial expansion with repeated edge pixels</li>
+                <li>Then, optimization with VQGAN+CLIP to generate realistic content in the expanded areas</li>
+            </ul>
+        </li>
+    </ol>
+
+    <h2>Examples</h2>
+    
+    <div class="image-comparison">
+        <div class="image-container">
+            <img src="https://github.com/robgon-art/e-dalle/raw/main/examples/farm_original.jpg" alt="Original Farm Image">
+            <p>Original 1:1 Image from DALL-E Mini</p>
+        </div>
+        <div class="image-container">
+            <img src="https://github.com/robgon-art/e-dalle/raw/main/examples/farm_edge.jpg" alt="Farm with Edge Pixels">
+            <p>Initial 16:9 Image with Repeated Edge Pixels</p>
+        </div>
+        <div class="image-container">
+            <img src="https://github.com/robgon-art/e-dalle/raw/main/examples/farm_expanded.jpg" alt="Farm Expanded">
+            <p>Expanded 16:9 Image using E-DALL-E</p>
+        </div>
+    </div>
+
+    <div class="image-comparison">
+        <div class="image-container">
+            <img src="https://github.com/robgon-art/e-dalle/raw/main/examples/abstract_original.jpg" alt="Original Abstract Image">
+            <p>Original 1:1 Abstract Image</p>
+        </div>
+        <div class="image-container">
+            <img src="https://github.com/robgon-art/e-dalle/raw/main/examples/abstract_expanded.jpg" alt="Abstract Expanded">
+            <p>Expanded 16:9 Abstract Image</p>
+        </div>
+    </div>
+
+    <h2>Getting Started</h2>
+    <p>To use this project, you'll need to install the required dependencies:</p>
+    <pre>pip install -r requirements.txt</pre>
+
+    <h3>Using the Command Line</h3>
+    <p>Run the script with a text prompt to generate and expand an image:</p>
+    <pre>python edalle.py --prompt "a painting of rolling farmland" --aspect_ratio 1.78 --num_images 4</pre>
+
+    <p>Or use the simpler script to expand an existing image:</p>
+    <pre>python simple_expand.py image.jpg --aspect 16/9 --prompt "a beautiful landscape" --output expanded.jpg</pre>
+
+    <h3>Using Google Colab</h3>
+    <p>
+        You can also try the project in Google Colab without installing anything locally.
+        <a href="https://colab.research.google.com/github/example/e-dalle/blob/main/edalle_colab.ipynb" class="button">Open in Colab</a>
+    </p>
+
+    <h2>Limitations</h2>
+    <p>
+        While E-DALL-E produces good results for many images, it has some limitations:
+    </p>
+    <ul>
+        <li>The quality of expansion depends on the original image content</li>
+        <li>Highly structured content (like faces) may be difficult to expand naturally</li>
+        <li>The optimization process can be computationally intensive</li>
+    </ul>
+
+    <footer>
+        Based on the work by Robert A. Gonsalves. Released under CC BY-SA license.
+    </footer>
+</body>
+</html> 

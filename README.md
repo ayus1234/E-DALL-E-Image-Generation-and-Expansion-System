@@ -156,7 +156,3 @@ This implementation is based on:
 - [DALL-E Mini](https://github.com/borisdayma/dalle-mini) by Boris Dayma and Pedro Cuenca
 - [VQGAN+CLIP](https://github.com/patil-suraj/vqgan-jax) for image expansion
 - The original E-DALL-E concept by Robert A. Gonsalves
-
-## 📃 License
-
-This project is available under the MIT License. See the LICENSE file for more information.

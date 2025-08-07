@@ -150,6 +150,12 @@ You can chain these tools together for creative workflows:
 2. Expand existing images with `local_expand.py`
 3. View all results with `view_results.py`
 
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+You are free to use, modify, and distribute this software in accordance with the terms of the license.
+
 ## 👏 Acknowledgments
 
 This implementation is based on:
